@@ -14,7 +14,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             z-index: 9999;
             align-items: center;
             justify-content: center;
@@ -26,16 +26,14 @@
             text-align: center;
             max-width: 90%;
             width: 500px;
-            animation: fadeInUp 0.6s ease;
+            opacity: 0;
+            transform: scale(0.95);
+            animation: fadeInModal 0.6s ease forwards;
         }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
+        @keyframes fadeInModal {
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: scale(1);
             }
         }
         .pulse {
@@ -49,12 +47,16 @@
     </style>
 </head>
 <body class="bg-gradient-to-br from-gray-900 to-gray-800 text-white min-h-screen">
-    <!-- THANK YOU MODAL -->
+
+    <!-- THANK YOU MODAL (SHOWS EVERY VISIT) -->
     <div id="thankYouModal" class="thank-you-modal">
         <div class="thank-you-content">
             <div class="text-5xl mb-4">🙏</div>
-            <h2 class="text-2xl font-bold mb-3">Thank You for Your Support!</h2>
-            <p class="text-gray-300 mb-6">Hey there! I'm yaggu, the creator of this tool. Thank you for trusting StealthPen. Your support means the world to me 🙏</p>
+            <h2 class="text-2xl font-bold mb-3">Hey there! I'm yaggu 👋</h2>
+            <p class="text-gray-300 mb-6 text-lg">
+                I'm the creator of this tool. Thank you for trusting StealthPen.<br>
+                Your support means the world to me 🙏
+            </p>
             <button onclick="closeThankYou()" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-bold hover:from-blue-700 hover:to-purple-700 transition transform hover:scale-105">
                 Let's Get Started!
             </button>
@@ -136,9 +138,9 @@
             </p>
             <div class="mt-4 flex justify-center gap-6 text-lg">
                 <a href="https://github.com/yagyeshVyas/" target="_blank" class="hover:text-white transition transform hover:scale-110" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/yagyeshvyas/" target="_blank" class="hover:text-blue-400 transition transform hover:scale-110" title="LinkedIn">
+<i class="fab fa-github"></i>
+</a>
+<a href="https://www.linkedin.com/in/yagyeshvyas/" target="_blank" class="hover:text-blue-400 transition transform hover:scale-110" title="LinkedIn">
                     <i class="fab fa-linkedin"></i>
                 </a>
             </div>
@@ -148,21 +150,30 @@
         </div>
     </div>
 
+    <!-- Floating Thank You Badge (Always Visible) -->
+    <div class="fixed bottom-6 right-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-full shadow-lg flex items-center space-x-2 animate-pulse z-50">
+        <span>🙏</span>
+        <span class="font-medium">Thank you — yaggu</span>
+    </div>
+
     <script src="script.js"></script>
     <script>
-        // Show thank you modal on first visit
+        // Show thank you modal EVERY TIME
         function showThankYou() {
-            if (!localStorage.getItem('visited')) {
-                document.getElementById('thankYouModal').style.display = 'flex';
-                localStorage.setItem('visited', 'true');
-            }
+            const modal = document.getElementById('thankYouModal');
+            modal.style.display = 'flex';
+
+            // Auto-close after 8 seconds
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 8000);
         }
 
         function closeThankYou() {
             document.getElementById('thankYouModal').style.display = 'none';
         }
 
-        // Auto-show on load
+        // Trigger on every page load
         window.onload = showThankYou;
     </script>
 </body>
