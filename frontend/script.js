@@ -21,7 +21,7 @@ async function handleHumanize() {
     gradeBadge.textContent = "Processing...";
 
     try {
-        const response = await fetch('http://localhost:5000/humanize', {
+        const response = await fetch('https://stealthpen-backend.onrender.com/humanize', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ text: input })
@@ -63,7 +63,7 @@ async function handleRewrite() {
 
 async function updateDashboardStats() {
     try {
-        const dbRes = await fetch('http://localhost:5000/last_updated');
+        const dbRes = await fetch('https://stealthpen-backend.onrender.com/last_updated');
         const dbData = await dbRes.json();
         document.getElementById('lastUpdated').textContent = dbData.last_updated || "Loading...";
     } catch (e) {
