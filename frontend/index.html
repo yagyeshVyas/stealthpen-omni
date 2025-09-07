@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StealthPen.ai — Humanize AI Text Instantly 🛡️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+        .btn-glow {
+            transition: all 0.3s ease;
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+            transform: translateY(-2px);
+        }
+        textarea {
+            transition: all 0.2s ease;
+        }
+        textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="max-w-5xl mx-auto px-4 py-8">
+        <!-- HEADER -->
+        <div class="text-center mb-10">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+                StealthPen.ai
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-2 font-medium">Turn AI text into undetectable human writing — in seconds.</p>
+            <p class="text-sm text-green-400 flex items-center justify-center gap-2">
+                <i class="fas fa-shield-alt"></i>
+                Bypasses GPTZero, Turnitin, Originality.ai, Copyleaks & more
+            </p>
+        </div>
+
+        <!-- MAIN TOOL -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+            <!-- INPUT -->
+            <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+                <label class="block mb-3 font-semibold text-lg flex items-center gap-2">
+                    <i class="fas fa-robot text-blue-400"></i>
+                    🤖 Paste AI-Generated Text
+                </label>
+                <textarea 
+                    id="inputText" 
+                    class="w-full h-56 p-4 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-600 resize-none"
+                    placeholder="Paste your ChatGPT, Claude, Gemini, or Copilot output here...&#10;&#10;Example: The utilization of artificial intelligence in modern education has commenced to revolutionize traditional learning methodologies."></textarea>
+            </div>
+
+            <!-- OUTPUT -->
+            <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+                <div class="flex justify-between items-center mb-3">
+                    <label class="font-semibold text-lg flex items-center gap-2">
+                        <i class="fas fa-user text-green-400"></i>
+                        👤 Humanized Output
+                    </label>
+                    <span id="bypassGrade" class="text-xs px-3 py-1.5 rounded-full bg-gray-600 text-white font-bold transition-all">Ready</span>
+                </div>
+                <textarea 
+                    id="outputText" 
+                    class="w-full h-56 p-4 bg-gray-700 rounded-lg text-white border border-gray-600 resize-none"
+                    readonly
+                    placeholder="Click 'Humanize Text' to transform your AI content into human-like writing that bypasses detectors."></textarea>
+                <div class="mt-3 text-sm text-gray-400 flex items-center gap-2" id="status">
+                    <i class="far fa-clock"></i>
+                    Press “Humanize” to start.
+                </div>
+            </div>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+            <button 
+                id="humanizeBtn" 
+                class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl font-bold text-lg shadow-lg transform hover:scale-105 transition-all duration-300 btn-glow">
+                <i class="fas fa-sync-alt mr-2"></i> Humanize Text (Bypass AI Detection)
+            </button>
+            <button 
+                id="rewriteBtn" 
+                class="px-8 py-4 bg-gray-700 hover:bg-gray-600 rounded-xl font-bold text-lg hidden transition-all"
+                disabled>
+                <i class="fas fa-redo mr-2"></i> Rewrite Again
+            </button>
+        </div>
+
+        <!-- STATS BAR -->
+        <div class="bg-gray-800 p-5 rounded-xl mb-10 text-center border border-gray-700">
+            <div class="text-sm text-gray-300 space-x-6">
+                <span><i class="far fa-clock text-blue-400"></i> Last Update: <span id="lastUpdated" class="font-mono">Loading...</span></span>
+                <span class="hidden md:inline">|</span>
+                <span><i class="fas fa-chart-line text-green-400"></i> Status: <span class="text-green-400 font-semibold">Online & Learning</span></span>
+                <span class="hidden md:inline">|</span>
+                <span><i class="fas fa-globe text-purple-400"></i> Free to use — no login required</span>
+            </div>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <div class="bg-gray-800 p-6 rounded-xl mb-10 border border-gray-700">
+            <h2 class="text-2xl font-bold mb-6 text-center text-white flex items-center justify-center gap-2">
+                <i class="fas fa-shield-alt"></i>
+                How StealthPen.ai Works
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition-all">
+                    <div class="text-4xl mb-3">🔁</div>
+                    <h3 class="font-bold text-lg mb-2">Rewrites with Human Noise</h3>
+                    <p class="text-sm text-gray-300">Adds natural typos, fillers, and rhythm breaks — just like real humans write.</p>
+                </div>
+                <div class="p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition-all">
+                    <div class="text-4xl mb-3">🌐</div>
+                    <h3 class="font-bold text-lg mb-2">Auto-Updates Every 5 Min</h3>
+                    <p class="text-sm text-gray-300">Learns new synonyms, slang, and structures — stays ahead of AI detectors.</p>
+                </div>
+                <div class="p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition-all">
+                    <div class="text-4xl mb-3">🤖</div>
+                    <h3 class="font-bold text-lg mb-2">Self-Learning Engine</h3>
+                    <p class="text-sm text-gray-300">Tests outputs, learns what bypasses best, and optimizes itself — autonomously.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="text-center text-sm text-gray-500 border-t border-gray-700 pt-8 mt-8">
+            <p class="mb-2">© 2025 StealthPen.ai — For educational use only. Do not misuse.</p>
+            <p class="flex flex-wrap justify-center gap-4">
+                <a href="#" class="hover:text-blue-400 transition">About</a>
+                <a href="#" class="hover:text-blue-400 transition">Privacy Policy</a>
+                <a href="#" class="hover:text-blue-400 transition">Terms of Service</a>
+                <a href="#" class="hover:text-blue-400 transition">Contact</a>
+            </p>
+            <p class="mt-4 text-xs text-gray-600">
+                Not affiliated with OpenAI, Turnitin, GPTZero, or any AI detector company.
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
